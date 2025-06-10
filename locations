@@ -1,0 +1,178 @@
+world_map = {
+    "continent": "Esterra",
+    "regions": {
+        "Kingdom of Eldoria": {
+            "type": "kingdom",
+            "description": "A lush, green land thriving with trade and cities famous for their festivals and intrigue.",
+            "cities": {
+                "Eldoria City": {
+                    "type": "capital",
+                    "description": "A vast metropolis of guilds, markets, high towers, and secrets.",
+                    "districts": {
+                        "Market": {
+                            "north": "Noble Quarters",
+                            "south": "Docks",
+                            "east": "College District",
+                            "west": "Old City",
+                            "npcs": ["Miira the Innkeeper", "Ryla the Street Urchin", "Bartholomew the Guard"],
+                            "buildings": {
+                                "Silver Cup Tavern": {"npcs": ["Miira the Innkeeper"]},
+                                "General Goods": {},
+                                "Hidden Alley": {"type": "secret", "leads_to": "Thieves' Den"}
+                            }
+                        },
+                        "Noble Quarters": {
+                            "south": "Market",
+                            "north": "Highwall Gate",
+                            "buildings": {
+                                "The Guildhall": {}, 
+                                "Lord Regent's Castle": {"npcs": ["Lord Regent"]}
+                            }
+                        },
+                        "Docks": {
+                            "north": "Market",
+                            "south": "South City Gate",
+                            "buildings": {
+                                "Fishmonger's": {},
+                                "Warehouse Row": {},
+                                "Old Well": {"type": "dungeon_entrance", "leads_to": "Eldoria Catacombs"}
+                            }
+                        },
+                        "College District": {
+                            "west": "Market", "buildings": {"Arcane Library": {}}
+                        },
+                        "Old City": {
+                            "east": "Market", "buildings": {"Shrine of the First Flame": {}}
+                        },
+                        "South City Gate": {
+                            "north": "Docks",
+                            "south": "South Road",
+                            "exit_city": True,
+                            "description": "Gates leading out. Guards eye everyone that passes."
+                        },
+                        "Highwall Gate": {
+                            "south": "Noble Quarters",
+                            "north": "Royal Road",
+                            "exit_city": True
+                        }
+                    }
+                },
+                "Greencroft": {
+                    "type": "town",
+                    "description": "A peaceful farming town with endless wheat fields.",
+                    "districts": {"Village Green": {"east": "Wheatfields", "buildings": {"Plow & Tankard Inn": {}}}}
+                },
+                "Sunspire": {
+                    "type": "city",
+                    "description": "A sun-drenched city famous for its golden domes and bazaars.",
+                    "districts": {
+                        "Bazaar": {
+                            "north": "Temple Quarter",
+                            "buildings": {"Sunspire Bazaar": {}}
+                        },
+                        "Temple Quarter": {
+                            "south": "Bazaar",
+                            "buildings": {"Hall of Oracles": {}}
+                        }
+                    }
+                }
+            },
+            "outskirts": {
+                "South Road": {
+                    "north": "South City Gate",
+                    "south": "Endless Meadow",
+                    "encounter": ["bandits", "traveling bard"],
+                    "leads_to": ["Greencroft"]
+                },
+                "Royal Road": {
+                    "south": "Highwall Gate",
+                    "north": "Riverford Crossing",
+                    "leads_to": ["Sunspire", "Port Greystone"]
+                }
+            }
+        },
+
+        "The Iron Wastes": {
+            "type": "wasteland",
+            "description": "A red desert, full of dust, jagged cliffs, ancient secrets, and wandering monsters.",
+            "cities": {
+                "Blackstone": {"type": "fortress", "description": "A city-fort in the wastes."}
+            },
+            "dungeons": {
+                "Blackfang Ruins": {
+                    "entrance": {"north": "Dusty Trail"},
+                    "encounters": ["kobold", "giant spider", "pit trap", "cursed artifact"],
+                    "lore": "Whispers say Blackfang was swallowed by the earth centuries ago."
+                }
+            }
+        },
+
+        "The Frostlands": {
+            "type": "arctic",
+            "description": "Frozen pine forests, icy lakes, and terrors in the snow.",
+            "cities": {
+                "Aurora Keep": {"type": "citadel", "description": "A shining fortress rising above the snowdrifts."},
+                "Windwhisper": {"type": "village", "description": "A remote hamlet beset by ice wolves."}
+            },
+            "dungeons": {
+                "Glacier Tomb": {
+                    "entrance": {"south": "Frozen Lake"},
+                    "encounters": ["frost wraith", "ice elemental", "hidden treasure"],
+                    "lore": "Only the daring return from here."
+                }
+            }
+        },
+
+        "The Eternal Forest": {
+            "type": "forest",
+            "description": "Ancient woodlands full of elves, hidden groves, and fae magic.",
+            "cities": {
+                "Starfall": {"type": "city", "description": "City of the Elves, hidden in moonlit trees."}
+            },
+            "areas": {
+                "Old Barrow": {
+                    "encounters": ["will-o-wisp", "ghoul"],
+                    "leads_to": "Ancient Tomb"
+                }
+            }
+        },
+
+        "Sunspire Empire": {
+            "type": "empire",
+            "description": "A land of gleaming cities and endless intrigue.",
+            "cities": {
+                "Sunspire": {"type": "city", "description": "Dazzling domes and spice markets as far as the eye can see."}
+            }
+        },
+
+        "Ghost Marches": {
+            "type": "marsh",
+            "description": "Mist, ghosts, and ancient secrets lie within.",
+            "villages": {
+                "Mistmere": {"type": "village", "description": "Half-abandoned, more ghosts than people."}
+            },
+            "dungeons": {
+                "Witchlight Bog": {
+                    "entrance": {"west": "Fog Path"},
+                    "encounters": ["swamp hag", "ghost", "hidden loot"],
+                    "lore": "Her croak is heard beneath the moonlight."
+                }
+            }
+        },
+
+        "Veiled Mountains": {
+            "type": "mountain range",
+            "description": "Crags, ancient dwarven cities, tunnels (and dragons?).",
+            "cities": {
+                "Stonegate": {"type": "dwarven hold", "description": "Home of the mountain dwarves."}
+            },
+            "dungeons": {
+                "Redfire Caverns": {
+                    "entrance": {"east": "Mountain Pass"},
+                    "encounters": ["fire drake", "magma ooze"],
+                    "lore": "Said to reach the world's heart."
+                }
+            }
+        }
+    }
+}
