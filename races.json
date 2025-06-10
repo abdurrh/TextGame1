@@ -1,0 +1,10 @@
+# stats: strength, agility, intelligence, vitality
+races = {
+  "Human":    {"Strength": 4, "Agility": 4, "Defence": 4, "Luck": 4, "Life": 4, "Wisdom": 5, "Charisma": 5},
+  "Elf":      {"Strength": 2, "Agility": 6, "Defence": 2, "Luck": 3, "Life": 3, "Wisdom": 8, "Charisma": 6},
+  "Dwarf":    {"Strength": 4, "Agility": 2, "Defence": 7, "Luck": 2, "Life": 7, "Wisdom": 4, "Charisma": 4},
+  "Halfling": {"Strength": 2, "Agility": 5, "Defence": 2, "Luck": 7, "Life": 3, "Wisdom": 4, "Charisma": 7},
+  "Orc":      {"Strength": 7, "Agility": 2, "Defence": 6, "Luck": 2, "Life": 7, "Wisdom": 2, "Charisma": 4},
+  "Tiefling": {"Strength": 3, "Agility": 3, "Defence": 3, "Luck": 6, "Life": 3, "Wisdom": 6, "Charisma": 6},
+  "Dragonborn": {"Strength": 6, "Agility": 3, "Defence": 6, "Luck": 2, "Life": 5, "Wisdom": 4, "Charisma": 4}
+}
