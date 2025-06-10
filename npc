@@ -1,0 +1,98 @@
+# --- Fixed NPCs (from locations etc) ---
+import random
+from items import items  # Assuming this is your global item pool
+
+# Example name pool (expand to 100+ for production)
+MALE_NAMES = [
+    "Aldric", "Barrin", "Cedric", "Darian", "Edric", "Fendrel", "Gareth", "Hadrian", "Ilan", "Jarek",
+    "Kael", "Leoric", "Merrick", "Norric", "Orin", "Perrin", "Quillon", "Roderic", "Seban", "Theron",
+    "Ulric", "Varek", "Wystan", "Xander", "Yoren", "Zarek", "Alric", "Bram", "Corvin", "Derris", "Egan",
+    "Faron", "Galen", "Halden", "Ivor", "Jensen", "Kellan", "Lucan", "Malric", "Niall", "Osmond", "Pavel",
+    "Quentin", "Rowan", "Soren", "Torrin", "Ulf", "Valen", "Wyatt", "Xavian", "Yestin", "Ziven", "Ansel",
+    "Bennett", "Cassian", "Dawen", "Eldan", "Fenric", "Garrett", "Harlan", "Isen", "Joss", "Kester",
+    "Loric", "Matthos", "Niklas", "Orren", "Parren", "Quade", "Reylan", "Stevan", "Tavian", "Uther",
+    "Varris", "Wilmar", "Xalvador", "Yorrick", "Zebedee", "Aston", "Brandt", "Cyric", "Damon", "Emeric",
+    "Frayne", "Garric", "Hollis", "Isidor", "Jorin", "Kurran", "Leyton", "Marek", "Nevan", "Orrick",
+    "Prescott", "Quillan", "Renn", "Struan", "Torric", "Ulwin", "Varick", "Ward", "Xerxes", "Yvan", "Zane"
+]
+FEMALE_NAMES = [
+    "Adara", "Beira", "Celia", "Darianne", "Elara", "Faylen", "Gwyneth", "Helene", "Isolde", "Jessamine",
+    "Katria", "Lira", "Mirelle", "Nerys", "Orla", "Phaedra", "Quinn", "Rhea", "Selene", "Thalassa",
+    "Ursa", "Vespera", "Wynne", "Xanthe", "Yvaine", "Zaria", "Alia", "Briallen", "Corisande", "Delphine",
+    "Elys", "Fiona", "Giselle", "Hannelore", "Ilona", "Jacinda", "Kaela", "Leontine", "Maris", "Nimue",
+    "Oriana", "Prudence", "Quilla", "Rowena", "Sybil", "Tamsin", "Una", "Verity", "Willow", "Xenia",
+    "Yseult", "Zinnia", "Anwen", "Brienne", "Cassia", "Delyth", "Eira", "Faryn", "Gweneira", "Hyacinth",
+    "Ivette", "Jovienne", "Kerensa", "Lunara", "Melisande", "Nyssa", "Odessa", "Petra", "Queniva", "Rosalind",
+    "Seraphine", "Tirien", "Uliana", "Varda", "Willa", "Xylia", "Ygritte", "Zuleika", "Arlen", "Beryn",
+    "Cressida", "Darian", "Enora", "Fjorin", "Glenys", "Heris", "Iseult", "Junia", "Kristine", "Lysandra",
+    "Minna", "Norelle", "Olira", "Portia", "Querida", "Rhoswen", "Sabine", "Thalia", "Urilla", "Vianne"
+]
+SURNAMES = [
+    "Aldercrest", "Amberfield", "Ashdown", "Barrow", "Blackwood", "Blake", "Bramble", "Brightwell", "Brookstone", "Clayborn",
+    "Coldtide", "Cormorant", "Crowhurst", "Dale", "Darkwater", "Dawnbringer", "Dorn", "Druin", "Dustmere", "Eagleton",
+    "Ember", "Evenwood", "Fairfield", "Fallowmere", "Frost", "Gale", "Glass", "Greenglade", "Greycastle", "Grimm",
+    "Hallow", "Hargrave", "Hawk", "Hearthmere", "Hemlock", "Highfield", "Hollow", "Holmtide", "Ironhand", "Ivory",
+    "Kent", "Kingsley", "Larkspur", "Leighton", "Lightfoot", "Lockridge", "Longbough", "Lynwood", "Merriman", "Moss",
+    "Nightbreeze", "Nightsong", "Oakenshield", "Orchard", "Pendrake", "Peregrine", "Pyrewell", "Quickwater", "Ravenwood", "Redfern",
+    "Reed", "Ridgewell", "Rivers", "Rowan", "Runebrook", "Sable", "Sandford", "Shadeleaf", "Shadowend", "Shorewood",
+    "Silverstream", "Silvers", "Slate", "Snow", "Sorrel", "Stannard", "Starling", "Stone", "Stormcloak", "Stormrider",
+    "Summers", "Thorne", "Timberlake", "Tremayne", "Valewin", "Vexley", "Ward", "Weald", "Westmark", "Wildwood",
+    "Willoughby", "Windwalker", "Winters", "Wolf", "Woodcroft", "Woodrow", "Wren", "Yarrow", "Yew", "Zephyr"
+]
+
+def generate_name(gender):
+    if gender == "male":
+        return f"{random.choice(MALE_NAMES)} {random.choice(SURNAMES)}"
+    else:
+        return f"{random.choice(FEMALE_NAMES)} {random.choice(SURNAMES)}"
+
+def generate_equipment(max_items=3):
+    items = random.sample(ITEMS_LIST, random.randint(1, max_items))
+    return items
+
+NPC_TYPES = [
+    "King", "Queen", "Guard", "Innkeeper", "Shopkeeper", "Townsfolk"
+]
+# --- Occupations for townsfolk ---
+OCCUPATIONS = [
+    "innkeeper", "guard", "shopkeeper", "merchant", "blacksmith", "tailor", "apothecary", "priest",
+    "bard", "noble", "farmer", "child", "beggar", "hunter", "barkeep", "stablemaster", "adventurer",
+    "mayor", "cook", "fisherman", "soldier", "herbalist", "trader", "librarian", "courier"
+# --- NPC generator function ---
+def generate_townsperson():
+    gender = random.choice(['male', 'female'])
+    if gender == 'male':
+        name = f"{random.choice(MALE_NAMES)} {random.choice(SURNAMES)}"
+    else:
+        name = f"{random.choice(FEMALE_NAMES)} {random.choice(SURNAMES)}"
+
+    occupation = random.choice(OCCUPATIONS)
+    # Children and beggars have less or no equipment
+    if occupation in ['child', 'beggar']:
+        equipment = random.sample(ITEMS_LIST, k=random.randint(0, 1))
+    else:
+        equipment = random.sample(ITEMS_LIST, k=random.randint(1, 3))
+
+    # You might want to vary stats/skills if you use them
+
+    npc = {
+        "type": "townsfolk",
+        "name": name,
+        "occupation": occupation,
+        "equipment": equipment,
+        # An example of how the NPC can answer about their occupation
+        "ask_occupation": f"I am a {occupation}."
+    }
+    return npc
+
+# --- Generate a city's worth of townsfolk ---
+def generate_city_townsfolk(number=30):
+    return [generate_townsperson() for _ in range(number)]
+
+
+# --- Example usage: Generate 30 townsfolk for a city ---
+city_npcs = generate_city_townsfolk(30)
+
+# --- Example output: Each NPC shows name, occupation, equipment, and occupation answer ---
+for npc in city_npcs[:5]:  # Show first five as demonstration
+    print(npc)
