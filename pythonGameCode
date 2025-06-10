@@ -1,27 +1,15 @@
-class Character:
-    def __init__(self, name, race, stats):
-        self.name = name
-        self.race = race
-        self.stats = stats  # Dictionary of stats
-        self.level = 1
-    # Methods to update stats, level up, etc.
-  import json
-
-# --- Utility to Load Race Data ---
-def load_races(filename="races.json"):
-    with open(filename, "r") as f:
-        return json.load(f)
+from races import races
 
 # --- Character Class ---
 class Character:
-    def __init__(self, name, race, stats):
+    def __init__(self, name, race, stats, equipment_slots):
         self.name = name
         self.race = race
         self.stats = stats  # dict: {"Strength": X, ...}
         self.xp = {stat: 0 for stat in stats}
         self.level = {stat: stats[stat] for stat in stats}
-
-    # Use a skill, gain XP in that stat
+        self.equipment = {slot: None for slot in equipment_slots}
+        # Use a skill, gain XP in that stat
     def use_skill(self, stat, xp_gain):
         self.xp[stat] += xp_gain
         needed_xp = self.get_needed_xp(stat)
@@ -34,6 +22,11 @@ class Character:
     def get_needed_xp(self, stat):
         multiplier = 20 if stat == "Luck" else 10
         return self.level[stat] * multiplier
+
+# --- Utility to Load Race Data ---
+def load_races(filename="races.py"):
+    with open(filename, "r") as f:
+        return races.load(f)
 
 # --- Character Creation ---
 def create_custom_race():
