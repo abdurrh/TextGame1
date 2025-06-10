@@ -1,0 +1,126 @@
+items = {
+    # ---- Weapons ----
+    "iron_sword": {
+        "name": "Iron Sword",
+        "type": "weapon",
+        "slot": ["left_hand", "right_hand"],
+        "two_handed": False,
+        "stats": {"Strength": 2},
+        "value": 50
+    },
+      "twohanded_sword": {
+        "name": "Two handed Sword",
+        "type": "weapon",
+        "slot": ["left_hand", "right_hand"],
+        "two_handed": True,
+        "stats": {"Strength": 4},
+        "value": 50
+    },
+    "wooden_shield": {
+        "name": "Wooden Shield",
+        "type": "shield",
+        "slot": ["left_hand", "right_hand"],
+        "two_handed": False,
+        "stats": {"Defence": 3},
+        "value": 30
+    },
+    "dagger": {
+        "name": "Dagger",
+        "type": "weapon",
+        "slot": ["left_hand", "right_hand"],
+        "two_handed": False,
+        "stats": {"Agility": 2, "Strength": 1},
+        "value": 25
+    },
+    "longbow": {
+        "name": "Longbow",
+        "type": "weapon",
+        "slot": ["left_hand", "right_hand"],
+        "two_handed": True,
+        "stats": {"Agility": 1, "Strength": 2},
+        "value": 75
+    },
+
+    # ---- Armor ----
+    "leather_helmet": {
+        "name": "Leather Helmet",
+        "type": "helmet",
+        "slot": ["helmet"],
+        "stats": {"Defence": 1, "Agility": 1},
+        "value": 20
+    },
+    "chainmail_armor": {
+        "name": "Chainmail Armor",
+        "type": "body_armor",
+        "slot": ["body_armor"],
+        "stats": {"Defence": 4},
+        "value": 120
+    },
+    "boots_of_speed": {
+        "name": "Boots of Speed",
+        "type": "boots",
+        "slot": ["boots"],
+        "stats": {"Agility": 3},
+        "value": 60
+    },
+
+    # ---- Accessories ----
+    "ring_of_luck": {
+        "name": "Ring of Luck",
+        "type": "ring",
+        "slot": ["left_ring", "right_ring"],
+        "stats": {"Luck": 2},
+        "value": 100
+    },
+    "amulet_of_wisdom": {
+        "name": "Amulet of Wisdom",
+        "type": "amulet",
+        "slot": ["amulet"],
+        "stats": {"Wisdom": 2},
+        "value": 80
+    },
+    "belt_of_strength": {
+        "name": "Belt of Strength",
+        "type": "belt",
+        "slot": ["belt"],
+        "stats": {"Strength": 2},
+        "value": 40
+    },
+    "cloak_of_shadows": {
+        "name": "Cloak of Shadows",
+        "type": "cloak",
+        "slot": ["cloak"],
+        "stats": {"Agility": 2, "Luck": 1},
+        "value": 90
+    },
+    "gloves_of_dexterity": {
+        "name": "Gloves of Dexterity",
+        "type": "gloves",
+        "slot": ["gloves"],
+        "stats": {"Agility": 2},
+        "value": 35
+    },
+    "backpack": {
+        "name": "Backpack",
+        "type": "back",
+        "slot": ["back"],
+        "stats": {},
+        "value": 10
+    },
+
+    # ---- Racial special items! ----
+    "lizardfolk_tailguard": {
+        "name": "Tailguard",
+        "type": "tail",
+        "slot": ["tail"],
+        "stats": {"Defence": 2},
+        "value": 25
+    },
+    "tiefling_horn_circlet": {
+        "name": "Horn Circlet",
+        "type": "horns",
+        "slot": ["horns"],
+        "stats": {"Charisma": 1, "Wisdom": 1},
+        "value": 70
+    }
+}
