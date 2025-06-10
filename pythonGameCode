@@ -71,3 +71,19 @@ if __name__ == "__main__":
     race, stats = choose_race(races)
     player = Character(name, race, stats)
     print(f"Created character {player.name} the {player.race} with stats: {player.stats}")
+
+def get_equipment_slots(race):
+    slots = BASE_EQUIPMENT_SLOTS.copy()
+    extra = EXTRA_EQUIPMENT_SLOTS.get(race, [])
+    slots.extend(extra)
+    return {slot: None for slot in slots}
+
+character_equipment = get_equipment_slots(player.race)
+print("Your equipment slots:", list(character_equipment.keys()))
+
+def equip_item(character, slot, item):
+    if item.two_handed and slot in ["left_hand", "right_hand"]:
+        character.equipment["left_hand"] = item
+        character.equipment["right_hand"] = item
+    else:
+        character.equipment[slot] = item
