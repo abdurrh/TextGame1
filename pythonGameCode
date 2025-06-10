@@ -1,6 +1,8 @@
 from races import races
+from items import items
+from locations import locations
 
-# --- Character Class ---
+
 class Character:
     def __init__(self, name, race, stats, equipment_slots):
         self.name = name
@@ -9,26 +11,19 @@ class Character:
         self.xp = {stat: 0 for stat in stats}
         self.level = {stat: stats[stat] for stat in stats}
         self.equipment = {slot: None for slot in equipment_slots}
-        # Use a skill, gain XP in that stat
+
     def use_skill(self, stat, xp_gain):
         self.xp[stat] += xp_gain
         needed_xp = self.get_needed_xp(stat)
         if self.xp[stat] >= needed_xp:
             self.level[stat] += 1
-            self.stats[stat] += 1   # Actually improve the stat
-            self.xp[stat] -= needed_xp  # Carry over excess XP
+            self.stats[stat] += 1 
+            self.xp[stat] -= needed_xp
 
-    # XP needed increases with stat (luck harder to level)
     def get_needed_xp(self, stat):
         multiplier = 20 if stat == "Luck" else 10
         return self.level[stat] * multiplier
 
-# --- Utility to Load Race Data ---
-def load_races(filename="races.py"):
-    with open(filename, "r") as f:
-        return races.load(f)
-
-# --- Character Creation ---
 def create_custom_race():
     available_points = 30
     stats = ["Strength", "Agility", "Defence", "Luck", "Life", "Wisdom", "Charisma"]
@@ -39,11 +34,14 @@ def create_custom_race():
         points = max(0, min(points, available_points))
         custom_stats[stat] = points
         available_points -= points
-    # auto-fill remainder to last stat, if needed
     if available_points > 0:
         last_stat = stats[-1]
         custom_stats[last_stat] += available_points
-    return custom_stats
+    # Using the default base slots for custom race
+    base_slots = ["helmet", "body_armor", "leg_armor", "boots",
+                  "left_ring", "right_ring", "left_bracelet", "right_bracelet",
+                  "left_hand", "right_hand", "amulet", "belt", "cloak", "gloves", "back"]
+    return custom_stats, base_slots
 
 def choose_race(races):
     print("Available Races:")
@@ -51,32 +49,16 @@ def choose_race(races):
         print(f"{i+1}. {race}")
     choice = int(input("Choose a race by number: "))
     if choice == len(races) + 1:
-        stats = create_custom_race()  # Custom race
-        return "Custom", stats
+        stats, slots = create_custom_race()
+        return "Custom", stats, slots
     else:
         race = list(races.keys())[choice-1]
-        return race, races[race]
+        return race, races[race]["stats"], races[race]["equipment_slots"]
 
-# --- Main ---
 if __name__ == "__main__":
-    races = load_races()  # Load races from JSON
     name = input("Enter your character's name: ")
-    race, stats = choose_race(races)
-    player = Character(name, race, stats)
-    print(f"Created character {player.name} the {player.race} with stats: {player.stats}")
+    race, stats, equipment_slots = choose_race(races)
+    player = Character(name, race, stats, equipment_slots)
+    print(f"\nCreated character {player.name} the {player.race} with stats: {player.stats}")
+    print("Your equipment slots:", list(player.equipment.keys()))
 
-def get_equipment_slots(race):
-    slots = BASE_EQUIPMENT_SLOTS.copy()
-    extra = EXTRA_EQUIPMENT_SLOTS.get(race, [])
-    slots.extend(extra)
-    return {slot: None for slot in slots}
-
-character_equipment = get_equipment_slots(player.race)
-print("Your equipment slots:", list(character_equipment.keys()))
-
-def equip_item(character, slot, item):
-    if item.two_handed and slot in ["left_hand", "right_hand"]:
-        character.equipment["left_hand"] = item
-        character.equipment["right_hand"] = item
-    else:
-        character.equipment[slot] = item
